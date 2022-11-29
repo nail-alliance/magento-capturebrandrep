@@ -8,7 +8,7 @@
         <referenceContainer name="form.additional.info">
             <block class="Magento\Framework\View\Element\Template"
                 name="BrandRepHash"
-                template="Nailalliance_AddBrandRepHash::brand_rep_hash.phtml" />
+                template="Nailalliance_CaptureBrandRep::brand_rep_hash.phtml" />
         </referenceContainer>
     </body>
 </page>
