@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    layout="1column"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Nailalliance_CaptureBrandRep::js/grabrep.js" />
+    </head>
+    <body>
+        <referenceContainer name="form.additional.info">
+            <block class="Magento\Framework\View\Element\Template"
+                name="BrandRepHash"
+                template="Nailalliance_AddBrandRepHash::brand_rep_hash.phtml" />
+        </referenceContainer>
+    </body>
+</page>
