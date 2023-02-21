@@ -9,7 +9,6 @@ window.onload = () => {
     } else {
       brHash.value = "";
     }
-    console.log("rep", brHash.value, trimmedLoc[1]);
   } catch (error) {
     console.log(error);
   }
