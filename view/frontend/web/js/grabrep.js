@@ -4,7 +4,7 @@ window.onload = () => {
   try {
     let trimmedLoc = docLoc.split("#");
 
-    if (trimmedLoc[1] != docLoc + "/#") {
+    if (trimmedLoc[1] != docLoc) {
       brHash.value = trimmedLoc[1];
     } else {
       brHash.value = "";
