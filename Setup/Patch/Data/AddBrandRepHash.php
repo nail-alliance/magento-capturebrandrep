@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -92,14 +93,16 @@ class AddBrandRepHash implements DataPatchInterface, PatchRevertableInterface
             'brand_rep_hash',
             [
                 'type' => 'varchar',
-                'label' => 'Brand Representative Used',
+                'label' => 'Brand Rep',
                 'input' => 'text',
                 'required' => 0,
                 'visible' => 1,
                 'user_defined' => 1,
                 'sort_order' => 999,
                 'position' => 999,
-                'system' => 0
+                'system' => 0,
+                'is_used_in_grid' => true,
+                'is_visible_in_grid' => true
             ]
         );
 
