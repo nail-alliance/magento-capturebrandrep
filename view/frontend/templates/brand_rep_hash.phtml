@@ -1,14 +1,184 @@
 <?php
 $storeBaseURL = $block->getBaseUrl();
-if ($storeBaseURL == 'https://gelishmorgantaylor.co.uk/' || $storeBaseURL == 'https://nailtechsupply.com/') {
 ?>
 
-    <div class="field brand_rep_hash required">
-        <div class="control">
-            <input type="hidden" name="brand_rep_hash" id="brand_rep_hash" value="">
-        </div>
+<?php if ($storeBaseURL == 'https://gelishmorgantaylor.co.uk/'): ?>
+<div class="field brand_rep_hash required">
+    <div class="control">
+        <label for="referral_source_gmt">How did you hear about us?</label>
+        <select name="referral_source" id="referral_source_gmt" onchange="toggleEducatorDropdown('gmt')" required>
+            <option value="">Select an option</option>
+            <option value="RepEducator">My Rep or Educator</option>
+            <option value="MagazineAdvert">Magazine Advert</option>
+            <option value="SocialMediaAdvert">Social Media Advert</option>
+            <option value="FacebookGroup">Facebook Group</option>
+            <option value="TradeShow">At a Trade Show</option>
+            <option value="Recommendation">Recommendation</option>
+        </select>
     </div>
+</div>
 
-<?php
+<div class="field brand_rep_hash required" id="educator_field_gmt" style="display: none;">
+    <div class="control">
+        <label for="educator_select_gmt">Who were you referred by?</label>
+        <select name="educator_select" id="educator_select_gmt">
+            <option value="">Select an educator</option>
+            <option value="AmyMartin">Amy Martin</option>
+            <option value="BeccaButterworth">Becca Butterworth</option>
+            <option value="CatherineJimenez">Catherine Jimenez</option>
+            <option value="ClaireBlincoe">Claire Blincoe</option>
+            <option value="DebbieWillis">Debbie Willis</option>
+            <option value="EmmaPrescott">Emma Prescott</option>
+            <option value="FabianNino">Fabian Nino</option>
+            <option value="Gari-Dawn">Gari-Dawn</option>
+            <option value="JanSoar">Jan Soar</option>
+            <option value="KirstyWalker">Kirsty Walker</option>
+            <option value="KristinaManners">Kristina Manners</option>
+            <option value="MazWilson">Maz Wilson</option>
+            <option value="NatalieHenson">Natalie Henson</option>
+            <option value="NicoleParker">Nicole Parker</option>
+            <option value="RhiannonGilfillan">Rhiannon Gilfillan</option>
+            <option value="SteliosKontos">Stelios Kontos</option>
+            <option value="ThiJackson">Thi Jackson</option>
+        </select>
+    </div>
+</div>
+<input type="hidden" name="brand_rep_hash" id="brand_rep_hash_gmt" value="">
+
+<?php elseif ($storeBaseURL == 'https://nailtechsupply.com/'): ?>
+<div class="field brand_rep_hash required">
+    <div class="control">
+        <label for="referral_source_nts">How did you hear about us?</label>
+        <select name="referral_source" id="referral_source_nts" onchange="toggleEducatorDropdown('nts')" required>
+            <option value="">Select an option</option>
+            <option value="RepEducator">My Rep or Educator</option>
+            <option value="MagazineAdvert">Magazine Advert</option>
+            <option value="SocialMediaAdvert">Social Media Advert</option>
+            <option value="FacebookGroup">Facebook Group</option>
+            <option value="TradeShow">At a Trade Show</option>
+            <option value="Recommendation">Recommendation</option>
+        </select>
+    </div>
+</div>
+
+<div class="field brand_rep_hash required" id="educator_field_nts" style="display: none;">
+    <div class="control">
+        <label for="educator_select_nts">Who were you referred by?</label>
+        <select name="educator_select" id="educator_select_nts">
+            <option value="">Select an educator</option>
+            <!-- Other educators here -->
+        </select>
+    </div>
+</div>
+<input type="hidden" name="brand_rep_hash" id="brand_rep_hash_nts" value="">
+
+<?php elseif ($storeBaseURL == 'https://entitybeauty.co.uk/'): ?>
+<div class="field brand_rep_hash required">
+    <div class="control">
+        <label for="referral_source_new">How did you hear about us?</label>
+        <select name="referral_source" id="referral_source_new" onchange="toggleEducatorDropdown('new')" required>
+            <option value="">Select an option</option>
+            <option value="RepEducator">My Rep or Educator</option>
+            <option value="MagazineAdvert">Magazine Advert</option>
+            <option value="SocialMediaAdvert">Social Media Advert</option>
+            <option value="FacebookGroup">Facebook Group</option>
+            <option value="TradeShow">At a Trade Show</option>
+            <option value="Recommendation">Recommendation</option>
+        </select>
+    </div>
+</div>
+
+<div class="field brand_rep_hash required" id="educator_field_new" style="display: none;">
+    <div class="control">
+        <label for="educator_select_new">Who were you referred by?</label>
+        <select name="educator_select" id="educator_select_new">
+            <option value="">Select an educator</option>
+            <option value="LaylaTourh">Layla Tourh</option>
+            <!-- Other educators here -->
+        </select>
+    </div>
+</div>
+<input type="hidden" name="brand_rep_hash" id="brand_rep_hash_new" value="">
+<style>.field.customer_will_email_license {
+	display: ruby;
 }
-?>
+</style>
+<?php endif; ?>
+
+<script>
+function toggleEducatorDropdown(site) {
+    var referralSource = document.getElementById('referral_source_' + site).value;
+    var educatorField = document.getElementById('educator_field_' + site);
+    var brandRepHash = document.getElementById('brand_rep_hash_' + site);
+    if (referralSource === 'RepEducator') {
+        educatorField.style.display = 'block';
+        brandRepHash.value = ''; 
+    } else {
+        educatorField.style.display = 'none';
+        brandRepHash.value = referralSource; 
+    }
+}
+
+document.querySelectorAll('select[id^="educator_select"]').forEach(function(selectElement) {
+    selectElement.addEventListener('change', function() {
+        var site = this.id.split('_')[2];
+        var educatorSelect = document.getElementById('educator_select_' + site).value;
+        document.getElementById('brand_rep_hash_' + site).value = educatorSelect;
+    });
+});
+
+document.querySelectorAll('.form-create-account').forEach(function(formElement) {
+    formElement.addEventListener('submit', function(event) {
+        var site = formElement.querySelector('select[id^="referral_source"]').id.split('_')[2];
+        var referralSource = document.getElementById('referral_source_' + site).value;
+        var educatorSelect = document.getElementById('educator_select_' + site).value;
+        var createAccountButton = formElement.querySelector('button[type="submit"]');
+        if (referralSource === 'RepEducator' && educatorSelect === '') {
+            alert('Please select an educator.');
+            event.preventDefault();
+            createAccountButton.disabled = false; 
+            return false;
+        }
+        return true;
+    });
+});
+
+function preSelectRepFromHash() {
+    var hash = window.location.hash.substring(1);
+    console.log("Hash extracted from URL:", hash);
+
+    if (hash) {
+        var sites = ['gmt', 'nts', 'new'];
+        sites.forEach(function(site) {
+            var referralSource = document.getElementById('referral_source_' + site);
+            var educatorSelect = document.getElementById('educator_select_' + site);
+            var brandRepHash = document.getElementById('brand_rep_hash_' + site);
+
+            if (referralSource && educatorSelect) {
+                var educatorOptions = Array.from(educatorSelect.options);
+                console.log("Checking options for site:", site, educatorOptions.map(option => option.value));
+                var match = educatorOptions.find(option => option.value === hash);
+                
+                if (match) {
+                    // console.log("Match found for site:", site, match.value);
+                    referralSource.value = 'RepEducator';
+                    toggleEducatorDropdown(site);
+                    educatorSelect.value = hash;
+                    brandRepHash.value = hash;
+                } else {
+                    // console.log("No match found for site:", site);
+                }
+            } else {
+                // console.log("Educator select element not found for site:", site);
+            }
+        });
+    }
+}
+
+// Call the function on page load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded and parsed");
+    preSelectRepFromHash();
+});
+
+</script>
